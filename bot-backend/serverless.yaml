@@ -1,1 +1,20 @@
-# serverless code
+service: movie-theather-api
+frameworkVersion: '3'
+
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  checkReservation:
+    handler: controllers/ReservationController.get_reservation
+    events:
+      - http:
+          path: /reservation
+          method: get
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+
