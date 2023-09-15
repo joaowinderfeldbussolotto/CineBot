@@ -5,7 +5,7 @@ import boto3
 # reuse client connection as global
 client = boto3.client('lambda')
 
-def router(event):
+def router(event, context):
     intent_name = event['sessionState']['intent']['name']
     fn_name = os.environ.get(intent_name)
     print(f"Intent: {intent_name} -> Lambda: {fn_name}")
@@ -20,5 +20,5 @@ def router(event):
 
 def lambda_handler(event, context):
     print(event)
-    response = router(event)
+    response = router(event, context)
     return response

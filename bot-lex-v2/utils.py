@@ -1,5 +1,5 @@
 def prepareResponse(event, msgText):
-    response = {
+  response = {
           "sessionState": {
             "dialogAction": {
               "type": "Close"
@@ -17,4 +17,4 @@ def prepareResponse(event, msgText):
             ]
         }
       
-    return response
+  return response
