@@ -3,5 +3,5 @@ from sqlalchemy.orm import sessionmaker
 from .config import settings
 
 engine = create_engine(settings.RDS_DATABASE_URI)
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(autocommit = True, bind = engine)
 db = Session()

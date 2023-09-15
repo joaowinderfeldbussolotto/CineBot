@@ -1,6 +1,5 @@
 import json
-
-def createResponseData(statusCode, body):
+def Response(statusCode, body=''):
     return {
         'statusCode': statusCode,
         "headers": {

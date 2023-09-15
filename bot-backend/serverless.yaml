@@ -7,12 +7,19 @@ provider:
   runtime: python3.8
 
 functions:
-  checkReservation:
-    handler: controllers/ReservationController.get_reservation
+  getReservations:
+    handler: controllers/reservation_controller.get_reservations
     events:
       - http:
           path: /reservation
           method: get
+
+  deleteReservation:
+    handler: controllers/reservation_controller.delete_reservation
+    events: 
+      - http:
+          path: /reservation
+          method: delete
 
 plugins:
   - serverless-offline
