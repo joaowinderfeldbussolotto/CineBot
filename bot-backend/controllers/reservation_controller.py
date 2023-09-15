@@ -7,7 +7,7 @@ def getQueryParameters(event):
     if query_params:
         user_email, reservation_id = query_params.get('user_email', ''), query_params.get('reservation_id', '')
         if not (user_email and reservation_id):
-            raise BadRequestException('Please provide a user_email and reservation_id')
+            raise BadRequestException('Por favor, informe os campos: user_email e reservation_id')
         return user_email, reservation_id
     
 def get_reservations(event, context):
@@ -34,7 +34,7 @@ def delete_reservation(event, context):
             # message = f"The reservation with id {reservation.id} was cancelled."
             return Response(204)
         
-        raise NotFoundException("There are no reservations for this user and id")
+        raise NotFoundException("Não foi encontrado reservas para esse email e ID.")
         
     except HTTPException as http_exception:
         return Response(http_exception.status_code, body={"message":http_exception.message})
