@@ -10,7 +10,7 @@ def delete_reservation(event, context):
     email = slots['email']['value']['interpretedValue']
     reservation_id = slots['ReservationID']['value']['interpretedValue']
     
-    api_url = settings.API_URL
+    api_url = f"{settings.API_URL}/reservation"
 
     params = {
         "user_email": email,
