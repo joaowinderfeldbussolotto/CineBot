@@ -20,7 +20,7 @@ functions:
     handler: router.lambda_handler 
 
   showMovies:
-    handler: showMovies.lambda_handler
+    handler: showMovies.get_movies
 
 plugins:
   - serverless-offline

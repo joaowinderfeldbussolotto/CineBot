@@ -21,6 +21,13 @@ functions:
           path: /reservation
           method: delete
 
+  getMovies:
+    handler: controllers/movie_controller.get_movies
+    events:
+      - http:
+          path: /movie
+          method: get
+
 plugins:
   - serverless-offline
   - serverless-python-requirements
