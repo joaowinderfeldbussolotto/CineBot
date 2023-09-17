@@ -41,12 +41,11 @@ def format_session_list(results):
 
   for result in results:
     session_dict = {
-      "ID da Sessao": result.id,
-      "Filme": result.movie.title,
-      "Sala": result.room.name,
-      "Inicio": datetime_serializer(result.begin),
-      "Fim": datetime_serializer(result.end),
-      "Preço": float(result.price)
+      "filme": result.movie.title,
+      "sala": result.room.name,
+      "inicio": datetime_serializer(result.begin),
+      "fim": datetime_serializer(result.end),
+      "preco": float(result.price)
     }
     sessions_as_dict.append(session_dict)
-  return sessions_as_dict
+  return {"sessoes": sessions_as_dict}

@@ -3,8 +3,6 @@ import json
 from utils import Response, format_session_list
 from services.session_service import fetchSessionByDay
 
-
-    
 def getSessionsByDays(event, context):
     try:
         request_data = json.loads(event['body'])
@@ -12,7 +10,6 @@ def getSessionsByDays(event, context):
             days_ahead = request_data['dayForSearch']
             results = fetchSessionByDay(days_ahead)
             dataList = format_session_list(results)
-
             return Response(200, dataList)
         else:
             return Response(400, {"error": "The 'dayForSearch' field must be an positive integer"})

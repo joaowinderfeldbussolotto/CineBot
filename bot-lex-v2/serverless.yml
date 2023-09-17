@@ -9,6 +9,7 @@ provider:
   environment:
     MoviesIntent: ${env:MoviesIntent}
     deleteReservationIntent: ${env:CancelReservation}
+    SessionsIntent: ${env:SessionsIntent}
     API_URL: ${env:API_URL} 
  
 
@@ -21,6 +22,9 @@ functions:
 
   showMovies:
     handler: showMovies.get_movies
+  
+  getSessions:
+    handler: handleSession.getSessionsByDay
 
 plugins:
   - serverless-offline
