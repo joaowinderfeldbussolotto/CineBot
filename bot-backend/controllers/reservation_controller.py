@@ -1,6 +1,8 @@
 from utils import Response
 from services.reservation_service import fetchReservations, fetchReservationByIdAndEmail, deleteReservation
 from http_exceptions import NotFoundException, InternalServerErrorException, HTTPException, BadRequestException
+from services.email_service import send_email
+
 
 def getQueryParameters(event):
     query_params = event.get('queryStringParameters')
@@ -30,8 +32,9 @@ def delete_reservation(event, context):
         user_email, reservation_id = getQueryParameters(event)
         reservation = fetchReservationByIdAndEmail(user_email, reservation_id)
         if (reservation):
+            reservation_dict = reservation.to_dict()
             deleteReservation(reservation)
-            # message = f"The reservation with id {reservation.id} was cancelled."
+            send_email(reservation_dict, 'Cancelamento')
             return Response(204)
         
         raise NotFoundException("Não foi encontrado reservas para esse email e ID.")
@@ -41,5 +44,9 @@ def delete_reservation(event, context):
     
     except Exception as e:
         return Response(500, {"message": str(e)})
+
+
+
+    
 
 
