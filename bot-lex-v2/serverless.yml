@@ -8,10 +8,11 @@ provider:
   region: us-east-1 
   environment:
     MoviesIntent: ${env:MoviesIntent}
-    deleteReservationIntent: ${env:CancelReservation}
+    CancelReservation: ${env:CancelReservation}
     SessionsIntent: ${env:SessionsIntent}
     API_URL: ${env:API_URL} 
- 
+
+
 
 functions:
   deleteReservation: 
@@ -19,6 +20,7 @@ functions:
 
   router:
     handler: router.lambda_handler 
+
 
   showMovies:
     handler: showMovies.get_movies
