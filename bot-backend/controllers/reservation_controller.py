@@ -1,8 +1,7 @@
-from utils import Response
+from utils import Response, transform_email
 from services.reservation_service import fetchReservations, fetchReservationByIdAndEmail, deleteReservation
 from http_exceptions import NotFoundException, InternalServerErrorException, HTTPException, BadRequestException
 from services.email_service import send_email
-
 
 def getQueryParameters(event):
     query_params = event.get('queryStringParameters')
@@ -10,7 +9,7 @@ def getQueryParameters(event):
         user_email, reservation_id = query_params.get('user_email', ''), query_params.get('reservation_id', '')
         if not (user_email and reservation_id):
             raise BadRequestException('Por favor, informe os campos: user_email e reservation_id')
-        return user_email, reservation_id
+        return transform_email(user_email), reservation_id
     
 def get_reservations(event, context):
     try:       
@@ -28,8 +27,11 @@ def get_reservations(event, context):
     return response
 
 def delete_reservation(event, context):
+    print('EVENTO: ')
+    print(event)
     try:     
         user_email, reservation_id = getQueryParameters(event)
+        print(user_email, reservation_id)
         reservation = fetchReservationByIdAndEmail(user_email, reservation_id)
         if (reservation):
             reservation_dict = reservation.to_dict()

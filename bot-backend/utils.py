@@ -1,5 +1,17 @@
 import json
 from datetime import datetime
+import re
+
+def transform_email(text):
+    match = re.search(r'<mailto:(.*?)\|.*?>', text)
+
+    if match:
+        email = match.group(1)
+        return email
+    else:
+        return text
+
+
 
 def Response(statusCode, body=''):
     """
