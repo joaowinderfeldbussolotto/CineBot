@@ -79,12 +79,15 @@ O objetivo principal desta sprint era desenvolver um chatbot utilizando o Amazon
 <a id="ancora2-3"></a>
 
 - ## 2.3 - Desenvolvimento do Chatbot com Amazon Lex V2
+  Desenvolvemos o CineBot usando Amazon Lex V2 para criar uma experiência conversacional intuitiva. Criamos menus interativos com "response cards" para o usuário navegar para cada intenção do chatbot, permitindo que os usuários escolham ações, como pesquisar filmes ou fazer reservas. Cada intenção está vinculada a uma função Lambda que processa as solicitações dos usuários e fornece respostas relevantes.
+
+
 
 
 <a id="ancora2-4"></a>
 
 - ## 2.4 - Desenvolvimento das Funções Lambda para Integração com o Chatbot
-
+  Nossas funções Lambda foram escritas em `Python` implantadas usando o framework `Serverless`. Elas lidam com solicitações específicas do chatbot, como reservas de ingressos e consultas sobre filmes, garantindo eficiência e escalabilidade. Isso permite ao CineBot oferecer uma experiência de usuário contínua e confiável.
  
 ***
 
