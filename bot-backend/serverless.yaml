@@ -27,11 +27,19 @@ functions:
       - http:
           path: /movie
           method: get
+  
   getSessions:
     handler: controllers/session_controller.getSessionsByDays
     events:
       - http:
           path: /session
+          method: post
+
+  getAvailableSeats:
+    handler: controllers/seat_controller.get_available_seats
+    events:
+      - http:
+          path: /get_seats
           method: post
 
 plugins:

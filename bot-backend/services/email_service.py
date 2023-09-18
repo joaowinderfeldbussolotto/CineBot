@@ -3,8 +3,6 @@ from email.mime.text import MIMEText
 from core.config import settings
 from jinja2 import Environment, FileSystemLoader
 
-
-
 def build_email_content(reservation, op='Confirmação'):
     subject = f'{op} de reserva'
 
@@ -22,7 +20,6 @@ def build_email_content(reservation, op='Confirmação'):
 
     message = template.render(template_data)
     return subject, message
-
 
 def send_email(reservation, op='Confirmação'):
     try:

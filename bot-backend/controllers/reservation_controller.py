@@ -27,11 +27,8 @@ def get_reservations(event, context):
     return response
 
 def delete_reservation(event, context):
-    print('EVENTO: ')
-    print(event)
     try:     
         user_email, reservation_id = getQueryParameters(event)
-        print(user_email, reservation_id)
         reservation = fetchReservationByIdAndEmail(user_email, reservation_id)
         if (reservation):
             reservation_dict = reservation.to_dict()
@@ -46,9 +43,3 @@ def delete_reservation(event, context):
     
     except Exception as e:
         return Response(500, {"message": str(e)})
-
-
-
-    
-
-
