@@ -14,6 +14,13 @@ functions:
           path: /reservation
           method: get
 
+  createReservation:
+    handler: controllers/reservation_controller.create_reservation
+    events: 
+      - http:
+          path: /reservation
+          method: post
+
   deleteReservation:
     handler: controllers/reservation_controller.delete_reservation
     events: 
@@ -36,7 +43,7 @@ functions:
           method: post
 
   getAvailableSeats:
-    handler: controllers/seat_controller.get_available_seats
+    handler: controllers/session_controller.get_available_seats
     events:
       - http:
           path: /get_seats

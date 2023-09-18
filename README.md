@@ -103,42 +103,44 @@ Para utilizar o `CineBot` no `Slack`, basta iniciar uma conversa com ele e selec
 
 # 4 - Estrutura de Pastas do Projeto
 
-- **bot-backend**
-  - **controllers**
-    - `movie_controller.py`
-    - `reservation_controller.py`
-    - `session_controller.py`
-  - **core**
-    - `config.py`
-    - `database.py`
-  - **models**
-    - `__all_models.py`
-    - `Base.py`
-    - `Movie.py`
-    - `Reservation.py`
-    - `ReservationSeat.py`
-    - `Room.py`
-    - `Seat.py`
-    - `Session.py`
-  - **services**
-    - `movie_service.py`
-    - `reservation_service.py`
-    - `session_service.py`
-  - `.env`
-  - `requirements.txt`
-  - `serverless.yml`
-  - `utils.py`
-
-- **bot-lex-v2**
-  - `.env`
-  - `config.py`
-  - `handleReservation.py`
-  - `requirements.txt`
-  - `router.py`
-  - `serverless.yml`
-  - `session.py`  
-  - `showMovies.py`  
-  - `utils.py`
+```
+.
+├── README.md
+├── bot-backend
+│   ├── controllers
+│   │   ├── movie_controller.py
+│   │   ├── reservation_controller.py
+│   │   └── session_controller.py
+│   ├── models
+│   │   ├── Base.py
+│   │   ├── Movie.py
+│   │   ├── Reservation.py
+│   │   ├── Room.py
+│   │   ├── Session.py
+│   │   └── __all_models.py
+│   ├── services
+│   │   ├── email_service.py
+│   │   ├── movie_service.py
+│   │   ├── reservation_service.py
+│   │   └── session_service.py
+│   ├── core
+│   │   ├── config.py
+│   │   └── database.py
+│   ├── static
+│   │   └── reservation_email_template.html
+│   ├── requirements.txt
+│   ├── serverless.yaml
+│   └── utils.py 
+└── bot-lex-v2
+    ├── config.py
+    ├── handleReservation.py
+    ├── handleSession.py
+    ├── requirements.txt
+    ├── router.py
+    ├── serverless.yml
+    ├── showMovies.py
+    └── utils.py
+```
 
 ***
 

@@ -168,4 +168,6 @@ event.json
 
 package-lock.json
 package.json
-node_modules/
+node_modules/	
+bot-backend/node_modules
+bot-lex-v2/node_modules

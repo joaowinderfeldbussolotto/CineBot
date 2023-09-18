@@ -1,3 +1,5 @@
+
+
 def prepareResponse(event, msgText):
   """
    Prepares a response to be sent to Amazon lex
@@ -50,3 +52,4 @@ def format_sessions(sessions):
         formatted_sessions.append(formatted_session)
 
     return '\n'.join(formatted_sessions)
+

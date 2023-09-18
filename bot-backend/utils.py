@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 import re
+import hashlib
 
 def transform_email(text):
     """
@@ -96,3 +97,12 @@ def format_available_seats(results):
   print(seats_as_dict)
   
   return {"poltronas": seats_as_dict}
+
+def get_hash(username, time):
+  try:
+    h = hashlib.new('sha256', usedforsecurity=True)
+    h.update(username.encode("utf-8"))
+    h.update(str(time).encode("utf-8"))
+    return h.hexdigest()
+  except:
+    raise Exception('Cannot generate hash')

@@ -1,8 +1,12 @@
-from utils import Response, transform_email
-from services.reservation_service import fetchReservations, fetchReservationByIdAndEmail, deleteReservation
+from utils import Response, transform_email, get_hash
+from services.reservation_service import fetchReservations, fetchReservationByIdAndEmail, deleteReservation, insertReservation
 from http_exceptions import NotFoundException, InternalServerErrorException, HTTPException, BadRequestException
 from services.email_service import send_email
 from services.session_service import reserve_seats, cancel_seats
+from models.Reservation import Reservation
+import json
+from datetime import datetime
+from core.database import db
 
 def getQueryParameters(event):
     """
@@ -52,4 +56,28 @@ def delete_reservation(event, context):
     
     except Exception as e:
         print(str(e))
+        return Response(500, {"message": str(e)})
+
+def create_reservation(event, context):
+    try:
+        values = json.loads(event['body'])
+        time = datetime.now()
+        hash_id = get_hash(values['nome_usuario'], time)
+
+        reservation = Reservation(
+            id          = hash_id,
+            session_id  = values['id_sessao'],
+            user_name   = values['nome_usuario'],
+            user_email  = transform_email(values['email_usuario']),
+            create_time = time, 
+            number_of_seats = values['quantidade_poltronas'],
+        )
+        
+        insertReservation(reservation)
+        reservation_dict = db.query(Reservation).filter(Reservation.id == hash_id).first().to_dict()
+        reserve_seats(values['quantidade_poltronas'], values['id_sessao'])
+        send_email(reservation_dict)
+
+        return Response(204)
+    except Exception as e: 
         return Response(500, {"message": str(e)})

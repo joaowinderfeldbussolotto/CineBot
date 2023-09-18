@@ -31,3 +31,7 @@ def cancel_seats(number_of_seats, session_id):
 
 def reserve_seats(number_of_seats, session_id):
    return update_seats_session(-1*number_of_seats, session_id)
+
+def fetchAvailableCinemaSeat(session_id, seats):
+  result = db.query(Session).filter(Session.id == session_id, Session.avaliable_seats > seats).first()
+  return result 

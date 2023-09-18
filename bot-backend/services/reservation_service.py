@@ -35,3 +35,8 @@ def deleteReservation(reservation: Reservation):
     db.commit()
     db.close()
 
+def insertReservation(reservation: Reservation):
+    db.begin()
+    db.add(reservation)
+    db.commit()
+    db.close()

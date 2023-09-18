@@ -51,5 +51,6 @@ def send_email(reservation, op='Confirmação'):
             smtp_server.login(sender, password)
             smtp_server.sendmail(sender, recipients, msg.as_string())
     except Exception as e:
+        print(str(e))
         return False
     return True
