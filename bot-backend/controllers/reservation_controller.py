@@ -18,7 +18,7 @@ def get_reservations(event, context):
         if (reservations):
             response = Response(200, reservations)
         else:
-            raise NotFoundException
+            response = Response(204)
     
     except HTTPException as http_exception:
         return Response(http_exception.status_code, {"message":http_exception.message})
