@@ -40,6 +40,7 @@ def format_sessions(sessions):
 
     for session in sessions:
         formatted_session = (
+            f"Id: {session['id']},\n"
             f"Filme: {session['filme']},\n"
             f"Sala: {session['sala']},\n"
             f"Início: {session['inicio']},\n"

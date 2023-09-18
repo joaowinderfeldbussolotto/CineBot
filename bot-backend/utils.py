@@ -60,6 +60,7 @@ def format_session_list(results):
 
   for result in results:
     session_dict = {
+      "id": result.id,
       "filme": result.movie.title,
       "sala": result.room.name,
       "inicio": datetime_serializer(result.begin),

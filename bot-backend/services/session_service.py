@@ -15,3 +15,19 @@ def fetchSessionByDay(days_ahead):
   results = db.query(Session).filter(Session.begin >= start_date, Session.begin < end_date).all()
 
   return results
+
+def update_seats_session(number_of_seats, session_id):
+    session = db.query(Session).filter(Session.id == session_id).first()
+    if session is None:
+      return False
+    db.begin()
+    session.avaliable_seats += number_of_seats
+    db.commit()
+    db.close()
+    return True
+
+def cancel_seats(number_of_seats, session_id):
+  return update_seats_session(number_of_seats, session_id)
+
+def reserve_seats(number_of_seats, session_id):
+   return update_seats_session(-1*number_of_seats, session_id)

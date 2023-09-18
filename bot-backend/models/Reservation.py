@@ -11,5 +11,6 @@ class Reservation(Base):
     user_name = Column("nome_usuario", String(255), nullable=False)
     user_email = Column("email_usuario", String(255), nullable=False)
     create_time = Column("create_time", DateTime, nullable=False)
+    number_of_seats = Column("quantidade_poltronas", Integer, nullable=False)
 
     session = relationship('Session')

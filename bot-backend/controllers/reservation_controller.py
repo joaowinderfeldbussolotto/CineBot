@@ -2,6 +2,7 @@ from utils import Response, transform_email
 from services.reservation_service import fetchReservations, fetchReservationByIdAndEmail, deleteReservation
 from http_exceptions import NotFoundException, InternalServerErrorException, HTTPException, BadRequestException
 from services.email_service import send_email
+from services.session_service import reserve_seats, cancel_seats
 
 def getQueryParameters(event):
     """
@@ -40,6 +41,7 @@ def delete_reservation(event, context):
         if (reservation):
             reservation_dict = reservation.to_dict()
             deleteReservation(reservation)
+            cancel_seats(reservation_dict['number_of_seats'], reservation_dict['session_id'])
             send_email(reservation_dict, 'Cancelamento')
             return Response(204)
         
@@ -49,4 +51,5 @@ def delete_reservation(event, context):
         return Response(http_exception.status_code, body={"message":http_exception.message})
     
     except Exception as e:
+        print(str(e))
         return Response(500, {"message": str(e)})

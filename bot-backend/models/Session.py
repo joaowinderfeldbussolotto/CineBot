@@ -14,6 +14,7 @@ class Session(Base):
     end = Column("data_hora_fim", DateTime, nullable=False)
     room_id = Column("id_sala", ForeignKey('salas.id'), nullable=False, index=True)
     price = Column("preco", DECIMAL(8, 2), nullable=False)
+    avaliable_seats = Column("poltronas_disponiveis", Integer, nullable=False)
 
     movie = relationship('Movie')
     room = relationship('Room')

@@ -34,3 +34,4 @@ def deleteReservation(reservation: Reservation):
     db.delete(reservation)
     db.commit()
     db.close()
+
