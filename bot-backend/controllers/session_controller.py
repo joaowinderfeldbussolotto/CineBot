@@ -9,11 +9,9 @@ def getSessionsByDays(event, context):
         if 'dayForSearch' in request_data and isinstance(request_data['dayForSearch'], int) and request_data['dayForSearch'] > 0:
             days_ahead = request_data['dayForSearch']
             results = fetchSessionByDay(days_ahead)
-            print(results)
             dataList = format_session_list(results)
-            print(dataList)
             return Response(200, dataList)
         else:
-            return Response(400, {"error": "The 'dayForSearch' field must be an positive integer"})
+            return Response(400, {"error": "O campo 'dayForSearch' deve ser um inteiro positivo"})
     except Exception as e:
         return Response(500, {"error": str(e)})

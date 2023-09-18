@@ -4,6 +4,14 @@ from core.config import settings
 from jinja2 import Environment, FileSystemLoader
 
 def build_email_content(reservation, op='Confirmação'):
+    """
+     Build the content of the email that will be sent to the user.
+     
+     @param reservation - The reservation for whom we are sending
+     @param op - The operation to be performed
+     
+     @return A tuple containing the subject and the message to be sent to the user.
+    """
     subject = f'{op} de reserva'
 
     env = Environment(loader=FileSystemLoader('./static/'))
@@ -22,6 +30,14 @@ def build_email_content(reservation, op='Confirmação'):
     return subject, message
 
 def send_email(reservation, op='Confirmação'):
+    """
+     Send email to user.
+     
+     @param reservation - Reservation object
+     @param op - String to use as subject and body defaults to Confirm
+     
+     @return True if email was sent False if there was an error in email. py or mail. sendmail
+    """
     try:
         subject, body = build_email_content(reservation, op)
         recipients = reservation['user_email']
@@ -35,6 +51,5 @@ def send_email(reservation, op='Confirmação'):
             smtp_server.login(sender, password)
             smtp_server.sendmail(sender, recipients, msg.as_string())
     except Exception as e:
-        print(str(e))
         return False
     return True

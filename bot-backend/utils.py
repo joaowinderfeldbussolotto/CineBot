@@ -3,6 +3,13 @@ from datetime import datetime
 import re
 
 def transform_email(text):
+    """
+     Extracts and returns the email address from the text.
+     
+     @param text - The text to be parsed
+     
+     @return The email address if found 
+    """
     match = re.search(r'<mailto:(.*?)\|.*?>', text)
 
     if match:
@@ -51,8 +58,6 @@ def format_session_list(results):
   """
   sessions_as_dict = []
 
-  print(f"tipo: {type(results[0])}")
-
   for result in results:
     session_dict = {
       "filme": result.movie.title,
@@ -65,6 +70,13 @@ def format_session_list(results):
   return {"sessoes": sessions_as_dict}
 
 def format_available_seats(results):
+  """
+   Format seats to dict.
+   
+   @param results - list of dictionaries returned by search function
+   
+   @return dict
+  """
   seats_as_dict = []
   print('estou no util')
   print(f'dict ?? : {results[0]}')
