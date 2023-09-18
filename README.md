@@ -65,10 +65,10 @@ O objetivo principal desta sprint era desenvolver um chatbot utilizando o Amazon
 <a id="ancora2-1"></a>
 
 - ## 2.1 - Desenvolvimento da Base de Dados
-  A construção do banco de dados MySQL utilizando o `Amazon RDS` foi essencial para o nosso projeto. A tabela "filmes" está relacionada com a tabela "sessoes", permitindo que cada sessão seja associada a um filme específico. A tabela "sessoes" também está relacionada com a tabela "salas", o que permite identificar a sala onde uma sessão ocorrerá. Além disso, as tabelas "reservas" e "poltronas" estão relacionadas através da tabela intermediária "reservas_poltronas" garantindo que cada reserva possa incluir várias poltronas. 
+  A construção do banco de dados MySQL utilizando o `Amazon RDS` foi essencial para o nosso projeto. A tabela "filmes" está relacionada com a tabela "sessoes", permitindo que cada sessão seja associada a um filme específico. A tabela "sessoes" também está relacionada com a tabela "salas", o que permite identificar a sala onde uma sessão ocorrerá. Além disso, as tabelas "reservas" e "sessoes" estão relacionadas garantindo que cada reserva armazene o número de poltronas reservadas para cada sessão. 
 
   <div align="center">
-    <img src = "./assets/ERRDiagram.png">
+    <img src = "./assets/EER.png">
   </div>
 
 <a id="ancora2-2"></a>
@@ -146,28 +146,8 @@ Para utilizar o `CineBot` no `Slack`, basta iniciar uma conversa com ele e selec
 
 # 5 - Arquitetura AWS
 
-- ## Banco de Dados: 
-
   <div align="center">
-    <img src = "">
-  </div>
-
-- ## APIs: 
-
-  <div align="center">
-    <img src = "">
-  </div>
-
-- ## CineBot: 
-
-  <div align="center">
-    <img src = "">
-  </div>
-
-- ## Funções Lambda CineBot: 
-
-  <div align="center">
-    <img src = "">
+    <img src = "./assets/ArquiteturaAWS.png">
   </div>
 
 
@@ -179,6 +159,7 @@ Para utilizar o `CineBot` no `Slack`, basta iniciar uma conversa com ele e selec
 
 1. Deploy das funções lambdas com bibliotecas externas.
 2. Desenvolvimento da lógica de negócio em relação ao tempo.
+3. Definição final da modelagem do banco de dados.
 
 
 
