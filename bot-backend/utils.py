@@ -51,6 +51,8 @@ def format_session_list(results):
   """
   sessions_as_dict = []
 
+  print(f"tipo: {type(results[0])}")
+
   for result in results:
     session_dict = {
       "filme": result.movie.title,
@@ -61,3 +63,23 @@ def format_session_list(results):
     }
     sessions_as_dict.append(session_dict)
   return {"sessoes": sessions_as_dict}
+
+def format_available_seats(results):
+  seats_as_dict = []
+  print('estou no util')
+  print(f'dict ?? : {results[0]}')
+  print(f"tipo: {type(results[0])}")
+  
+  for result in results:
+    result = list(result.values())
+    seat_dict = {
+      "id": int(result[0]),
+      "id_sala": int(result[1]),
+      "fileira": result[2],
+      "numero": int(result[3])
+    }
+    seats_as_dict.append(seat_dict)
+  
+  print(seats_as_dict)
+  
+  return {"poltronas": seats_as_dict}
