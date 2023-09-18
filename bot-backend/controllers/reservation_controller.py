@@ -4,6 +4,13 @@ from http_exceptions import NotFoundException, InternalServerErrorException, HTT
 from services.email_service import send_email
 
 def getQueryParameters(event):
+    """
+     Extracts query parameters from event. This is used to extract user_email and reservation_id from query parameters.
+     
+     @param event - Event which contains query parameters.
+     
+     @return Tuple of ( user_email reservation_id)
+    """
     query_params = event.get('queryStringParameters')
     if query_params:
         user_email, reservation_id = query_params.get('user_email', ''), query_params.get('reservation_id', '')
