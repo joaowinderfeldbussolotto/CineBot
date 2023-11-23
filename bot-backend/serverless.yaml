@@ -1,0 +1,55 @@
+service: movie-theather-api
+frameworkVersion: '3'
+
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  getReservations:
+    handler: controllers/reservation_controller.get_reservations
+    events:
+      - http:
+          path: /reservation
+          method: get
+
+  createReservation:
+    handler: controllers/reservation_controller.create_reservation
+    events: 
+      - http:
+          path: /reservation
+          method: post
+
+  deleteReservation:
+    handler: controllers/reservation_controller.delete_reservation
+    events: 
+      - http:
+          path: /reservation
+          method: delete
+
+  getMovies:
+    handler: controllers/movie_controller.get_movies
+    events:
+      - http:
+          path: /movie
+          method: get
+  
+  getSessions:
+    handler: controllers/session_controller.getSessionsByDays
+    events:
+      - http:
+          path: /session
+          method: post
+
+  getAvailableSeats:
+    handler: controllers/session_controller.get_available_seats
+    events:
+      - http:
+          path: /get_seats
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+

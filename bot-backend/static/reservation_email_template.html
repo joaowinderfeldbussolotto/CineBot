@@ -1,0 +1,46 @@
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>Olá, {{ user_name }},</p>
+    <p>Sua reserva para a sessão ID {{ session_id }} foi {{ confirmation_status }}.</p>
+    <p>Detalhes da reserva:</p>
+    <table>
+        <tr>
+            <th>Informação</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>ID da Reserva:</td>
+            <td>{{ reservation_id }}</td>
+        </tr>
+        <tr>
+            <td>Nome do Usuário:</td>
+            <td>{{ user_name }}</td>
+        </tr>
+        <tr>
+            <td>Nome do filme:</td>
+            <td>{{ movie_title }}</td>
+        </tr>
+        <tr>
+            <td>Horário:</td>
+            <td>{{ session_begin }}</td>
+        </tr>
+    </table>
+    <p>Obrigado por escolher nossos serviços.</p>
+</body>
+</html>

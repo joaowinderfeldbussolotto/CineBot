@@ -1,0 +1,52 @@
+service: handle-intents
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1 
+  environment:
+    MoviesIntent: ${env:MoviesIntent}
+    CancelReservation: ${env:CancelReservation}
+    SessionsIntent: ${env:SessionsIntent}
+    CreateReservation: ${env:CreateReservation}
+    API_URL: ${env:API_URL} 
+
+  iam:
+    role:
+      name: role-for-lambda-lex-bot
+      statements:
+        - Effect: Allow
+          Action: lambda:InvokeFunction
+          Resource: "*"
+        - Effect: Allow
+          Action:
+            - logs:CreateLogStream
+            - logs:TagResource
+            - logs:CreateLogGroup
+          Resource: "arn:aws:logs:us-east-1:697161401770:log-group:/aws/lambda/handle-intents-dev*:*"
+        - Effect: Allow
+          Action: logs:PutLogEvents
+          Resource: "arn:aws:logs:us-east-1:697161401770:log-group:/aws/lambda/handle-intents-dev*:*:*"
+
+
+functions:
+  createReservation:
+    handler: handleReservation.create_reservation
+    
+  deleteReservation: 
+    handler: handleReservation.delete_reservation  
+
+  router:
+    handler: router.lambda_handler 
+
+  showMovies:
+    handler: showMovies.get_movies
+  
+  getSessions:
+    handler: handleSession.getSessionsByDay
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
